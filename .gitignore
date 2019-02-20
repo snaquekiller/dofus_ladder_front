@@ -5,6 +5,7 @@
 .settings
 .sonar-ide.properties
 target/
+dist/
 .idea/
 *.iml
 .DS_store

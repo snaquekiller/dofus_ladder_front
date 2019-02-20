@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "react-bootstrap/lib/Button";
+import Form from "react-bootstrap/lib/Form";
 import FormControl from "react-bootstrap/lib/FormControl";
 import ControlLabel from "react-bootstrap/lib/ControlLabel";
 import Panel from "react-bootstrap/lib/Panel";
@@ -15,6 +16,7 @@ import {
   Legend
 } from "recharts";
 
+import Loader from "react-loader-spinner";
 import CompareService from "../service/CompareService.jsx";
 
 const PanelForm = styled.div`
@@ -22,11 +24,13 @@ const PanelForm = styled.div`
   margin-left: auto;
   margin-right: auto;
 `;
-export default class MangaUrl extends React.Component {
+export default class GraphCompare extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       hide: ["name"],
+      name: "",
+      loading: false,
       colors: [
         "#003f5c",
         "#2f4b7c",
@@ -56,6 +60,7 @@ export default class MangaUrl extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.changeName = this.changeName.bind(this);
     this.scrap = this.scrap.bind(this);
     this.dataFormater = this.dataFormater.bind(this);
   }
@@ -63,13 +68,21 @@ export default class MangaUrl extends React.Component {
   handleChange(e) {
     this.setState({ url: e.target.value });
   }
+  changeName(e) {
+    this.setState({ name: e.target.value });
+  }
   scrap() {
-    CompareService.compare("flem").then(mangaGet => {
-      console.log(mangaGet.data);
+    if (this.state.name) {
       this.setState({
-        data: mangaGet.data
+        loading: true
       });
-    });
+      CompareService.compare(this.state.name).then(mangaGet => {
+        this.setState({
+          data: mangaGet.data,
+          loading: false
+        });
+      });
+    }
   }
 
   dataFormater(number) {
@@ -85,13 +98,48 @@ export default class MangaUrl extends React.Component {
   }
 
   render() {
+    const keys = [];
+    if (this.state.data) {
+      this.state.data.map(data =>
+        Object.keys(data)
+          .map(key => key)
+          .forEach(keyName => {
+            if (!keys.includes(keyName) && keyName !== "name") {
+              keys.push(keyName);
+            }
+          })
+      );
+      console.log("keys", keys);
+    }
     return (
       <div>
         <Panel>
-          <Button bsStyle="primary" onClick={this.scrap}>
-            Flem !!!
-          </Button>
-          {this.state.data && (
+          <PanelForm>
+            <Form>
+              <FormControl
+                type="text"
+                width="500px"
+                placeholder="Pseudo"
+                onChange={this.changeName}
+                value={this.state.name}
+              />
+              <Button
+                bsStyle="primary"
+                disabled={this.state.loading}
+                onClick={this.scrap}
+              >
+                Graph Me !!
+              </Button>
+            </Form>
+          </PanelForm>
+        </Panel>
+        {this.state.loading && (
+          <Panel>
+            <Loader type="Circles" color="#00BFFF" height="100" width="100" />
+          </Panel>
+        )}
+        {!this.state.loading && this.state.data && (
+          <Panel>
             <LineChart
               width={1500}
               height={700}
@@ -105,7 +153,7 @@ export default class MangaUrl extends React.Component {
                 formatter={value => new Intl.NumberFormat("en").format(value)}
               />
               <Legend onClick={data => console.log("data", data)} />
-              {Object.keys(this.state.data[0]).map((key, i) => {
+              {keys.map((key, i) => {
                 if (!this.state.hide.includes(key)) {
                   return (
                     <Line
@@ -121,8 +169,8 @@ export default class MangaUrl extends React.Component {
                 return;
               })}
             </LineChart>
-          )}
-        </Panel>
+          </Panel>
+        )}
       </div>
     );
   }

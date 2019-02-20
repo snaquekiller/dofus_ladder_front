@@ -1,0 +1,25 @@
+version: "3.4"
+services:
+  nuke-admin-front:
+    image: snaquekiller/dofus_ladder_front:latest
+    ports:
+      - 80
+    deploy:
+      labels:
+        - "traefik.port=80"
+        - "traefik.backend=dofusladder_front"
+        - "traefik.docker.network=main-proxy"
+        - "traefik.frontend.rule=Host:dofusladder.fr;PathPrefixStrip:/static"
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 10
+        window: 120s
+      update_config:
+        parallelism: 1
+        delay: 4s
+        failure_action: pause
+        monitor: 15s
+        order: "start-first"

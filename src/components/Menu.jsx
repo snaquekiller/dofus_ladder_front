@@ -85,16 +85,13 @@ export default class MenuDofus extends React.Component {
       <StyledMenu>
         <Menu>
           <a id="home" className="menu-item" href="/">
-            Home
+            Comparaison
           </a>
           <a id="about" className="menu-item" href="/about">
-            About
+            Top
           </a>
           <a id="contact" className="menu-item" href="/contact">
             Contact
-          </a>
-          <a onClick={this.showSettings} className="menu-item--small" href="">
-            Settings
           </a>
         </Menu>
       </StyledMenu>

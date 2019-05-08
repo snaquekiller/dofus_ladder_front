@@ -1,12 +1,12 @@
-import { observable, action, computed } from "mobx";
-import Cookies from "js-cookie";
+import { observable, action } from 'mobx';
+import Cookies from 'js-cookie';
 
 const LoginStore = {
-  @observable token: Cookies.get("token"),
+  @observable token: Cookies.get('token'),
 
   @action
   refreshToken() {
-    LoginStore.token = Cookies.get("token");
+    LoginStore.token = Cookies.get('token');
   }
 };
 

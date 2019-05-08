@@ -1,39 +1,40 @@
-import axios from "axios";
-import qs from "querystring";
-import Cookies from "js-cookie";
+import axios from 'axios';
+import qs from 'querystring';
+import Cookies from 'js-cookie';
 
 export const configs = {
   dev: {
-    domain: "http://localhost:9665"
+    domain: 'http://localhost:9665'
   },
   stg: {
-    domain: "http://localhost:9665"
+    domain: 'http://localhost:9665'
   },
   prd: {
-    domain: "http://localhost:9665"
+    domain: 'http://localhost:9665'
   }
 };
-export const env = window.pageEnv || "dev";
+export const env = window.pageEnv || 'dev';
 
 class ConfigUri {
   static getHeaders() {
-    const bearer = "Bearer " + Cookies.get("token");
+    const bearer = `Bearer ${Cookies.get('token')}`;
     return {
-      mode: "no-cors",
+      mode: 'no-cors',
       headers: {
-        Accept: "application/json",
+        Accept: 'application/json',
         Authorization: bearer,
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       }
     };
   }
+
   static getHeadersLogin() {
     return {
-      mode: "no-cors",
+      mode: 'no-cors',
       headers: {
-        Accept: "application/json",
-        Authorization: "Basic dGVzdDp0ZXN0Mg==",
-        "Content-Type": "application/x-www-form-urlencoded"
+        Accept: 'application/json',
+        Authorization: 'Basic dGVzdDp0ZXN0Mg==',
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
   }
@@ -41,23 +42,24 @@ class ConfigUri {
   static getEndpoint(endPoint) {
     return configs[env].domain + endPoint;
   }
+
   static get(url) {
     return axios
       .get(url, this.getHeaders())
-      .then(response => {
-        return response;
-      })
+      .then(response => response)
       .catch(error => {
         if (error.response.status === 401) {
-          Cookies.remove("token");
+          Cookies.remove('token');
         }
-        console.error("error", error);
+        console.error('error', error);
         return null;
       });
   }
+
   static post(url, data) {
     return axios.post(url, data, this.getHeaders());
   }
+
   static login(url, data) {
     return axios.post(url, qs.stringify(data), this.getHeadersLogin());
   }

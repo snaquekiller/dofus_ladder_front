@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { slide as Menu } from "react-burger-menu";
+import React from 'react';
+import styled from 'styled-components';
+import { slide as Menu } from 'react-burger-menu';
 
 const StyledMenu = styled.div`
   /* Position and sizing of burger button */

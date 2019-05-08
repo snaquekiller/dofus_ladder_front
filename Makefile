@@ -1,13 +1,10 @@
 
 dev: ## springboot run
-	mvn spring-boot:run
+	yarn start
 
-db:
-	docker-compose up --build
-
-build:
-	mvn clean install
+fix:
+	node_modules/.bin/eslint --ext .jsx --ext .js --fix src	
 
 update:
 	scp docker-compose-release.yml perso:/tmp
-	ssh perso -C "docker stack deploy -c /tmp/docker-compose-release.yml dofus"
+	ssh perso -C "docker stack deploy -c /tmp/docker-compose-release.yml dofus-front"

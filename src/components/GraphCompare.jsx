@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "react-bootstrap/lib/Button";
-import Form from "react-bootstrap/lib/Form";
-import FormControl from "react-bootstrap/lib/FormControl";
-import ControlLabel from "react-bootstrap/lib/ControlLabel";
-import Panel from "react-bootstrap/lib/Panel";
-import RandomColor from "randomcolor";
+import React from 'react';
+import styled from 'styled-components';
+import Button from 'react-bootstrap/lib/Button';
+import Form from 'react-bootstrap/lib/Form';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import Panel from 'react-bootstrap/lib/Panel';
+import RandomColor from 'randomcolor';
 import {
   LineChart,
   Line,
@@ -14,10 +14,10 @@ import {
   CartesianGrid,
   Tooltip,
   Legend
-} from "recharts";
+} from 'recharts';
 
-import Loader from "react-loader-spinner";
-import CompareService from "../service/CompareService.jsx";
+import Loader from 'react-loader-spinner';
+import CompareService from '../service/CompareService.jsx';
 
 const PanelForm = styled.div`
   width: 400px;
@@ -28,34 +28,34 @@ export default class GraphCompare extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hide: ["name"],
-      name: "",
+      hide: ['name'],
+      name: '',
       loading: false,
       colors: [
-        "#003f5c",
-        "#2f4b7c",
-        "#665191",
-        "#a05195",
-        "#d45087",
-        "#f95d6a",
-        "#ff7c43",
-        "#ffa600",
-        "#003f1d",
-        "#2f4b1d",
-        "#66511d",
-        "#a0511d",
-        "#d4501d",
-        "#f95d1d",
-        "#ff7c1d",
-        "#ffa61d",
-        "#003f7e",
-        "#2f4b7e",
-        "#66517e",
-        "#a0517e",
-        "#d4507e",
-        "#f95d7e",
-        "#ff7c7e",
-        "#ffa67e"
+        '#003f5c',
+        '#2f4b7c',
+        '#665191',
+        '#a05195',
+        '#d45087',
+        '#f95d6a',
+        '#ff7c43',
+        '#ffa600',
+        '#003f1d',
+        '#2f4b1d',
+        '#66511d',
+        '#a0511d',
+        '#d4501d',
+        '#f95d1d',
+        '#ff7c1d',
+        '#ffa61d',
+        '#003f7e',
+        '#2f4b7e',
+        '#66517e',
+        '#a0517e',
+        '#d4507e',
+        '#f95d7e',
+        '#ff7c7e',
+        '#ffa67e'
       ]
     };
 
@@ -68,9 +68,11 @@ export default class GraphCompare extends React.Component {
   handleChange(e) {
     this.setState({ url: e.target.value });
   }
+
   changeName(e) {
     this.setState({ name: e.target.value });
   }
+
   scrap() {
     if (this.state.name) {
       this.setState({
@@ -87,14 +89,15 @@ export default class GraphCompare extends React.Component {
 
   dataFormater(number) {
     if (number > 1000000000) {
-      return (number / 1000000000).toString() + "B";
-    } else if (number > 1000000) {
-      return (number / 1000000).toString() + "M";
-    } else if (number > 1000) {
-      return (number / 1000).toString() + "K";
-    } else {
-      return number.toString();
+      return `${(number / 1000000000).toString()}B`;
     }
+    if (number > 1000000) {
+      return `${(number / 1000000).toString()}M`;
+    }
+    if (number > 1000) {
+      return `${(number / 1000).toString()}K`;
+    }
+    return number.toString();
   }
 
   render() {
@@ -104,12 +107,12 @@ export default class GraphCompare extends React.Component {
         Object.keys(data)
           .map(key => key)
           .forEach(keyName => {
-            if (!keys.includes(keyName) && keyName !== "name") {
+            if (!keys.includes(keyName) && keyName !== 'name') {
               keys.push(keyName);
             }
           })
       );
-      console.log("keys", keys);
+      console.log('keys', keys);
     }
     return (
       <div>
@@ -144,15 +147,20 @@ export default class GraphCompare extends React.Component {
               width={1500}
               height={700}
               data={this.state.data}
-              margin={{ top: 100, right: 30, left: 100, bottom: 5 }}
+              margin={{
+                top: 100,
+                right: 30,
+                left: 100,
+                bottom: 5
+              }}
             >
               <XAxis dataKey="name" />
               <YAxis type="number" tickFormatter={this.dataFormater} />
               <CartesianGrid strokeDasharray="3 3" />
               <Tooltip
-                formatter={value => new Intl.NumberFormat("en").format(value)}
+                formatter={value => new Intl.NumberFormat('en').format(value)}
               />
-              <Legend onClick={data => console.log("data", data)} />
+              <Legend onClick={data => console.log('data', data)} />
               {keys.map((key, i) => {
                 if (!this.state.hide.includes(key)) {
                   return (
@@ -166,7 +174,6 @@ export default class GraphCompare extends React.Component {
                     />
                   );
                 }
-                return;
               })}
             </LineChart>
           </Panel>

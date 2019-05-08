@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "react-bootstrap/lib/Button";
-import FormGroup from "react-bootstrap/lib/FormGroup";
-import Form from "react-bootstrap/lib/Form";
-import FormControl from "react-bootstrap/lib/FormControl";
-import ControlLabel from "react-bootstrap/lib/ControlLabel";
-import Panel from "react-bootstrap/lib/Panel";
+import React from 'react';
+import styled from 'styled-components';
+import Button from 'react-bootstrap/lib/Button';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Form from 'react-bootstrap/lib/Form';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import Panel from 'react-bootstrap/lib/Panel';
 
-import LoginService from "../service/LoginService.jsx";
+import LoginService from '../service/LoginService.jsx';
 
 const PanelForm = styled.div`
   width: 400px;
@@ -19,8 +19,8 @@ export default class LoginForm extends React.Component {
     super(props);
     this.state = {
       manga: undefined,
-      login: "",
-      password: "",
+      login: '',
+      password: '',
       showModal: false
     };
     this.login = this.login.bind(this);

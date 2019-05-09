@@ -51,6 +51,7 @@ class ConfigUri {
         if (error.response.status === 401) {
           Cookies.remove('token');
         }
+        // eslint-disable-next-line no-console
         console.error('error', error);
         return null;
       });

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/lib/Button';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
@@ -18,10 +19,8 @@ export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      manga: undefined,
-      login: '',
-      password: '',
-      showModal: false
+      email: '',
+      password: ''
     };
     this.login = this.login.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -29,7 +28,7 @@ export default class LoginForm extends React.Component {
   }
 
   handleLogin(e) {
-    this.setState({ login: e.target.value });
+    this.setState({ email: e.target.value });
   }
 
   handlePassword(e) {
@@ -37,12 +36,16 @@ export default class LoginForm extends React.Component {
   }
 
   login() {
-    LoginService.login(this.state.login, this.state.password).then(() => {
-      this.props.login();
+    const { email, password } = this.state;
+    const { login } = this.props;
+    LoginService.login(email, password).then(() => {
+      login();
     });
   }
 
   render() {
+    const { email, password } = this.state;
+
     return (
       <PanelForm>
         <Panel>
@@ -53,13 +56,13 @@ export default class LoginForm extends React.Component {
                 type="email"
                 placeholder="Email"
                 onChange={this.handleLogin}
-                value={this.state.login}
+                value={email}
               />
               <FormControl
                 type="password"
                 placeholder="Password"
                 onChange={this.handlePassword}
-                value={this.state.password}
+                value={password}
               />
               <FormControl.Feedback />
             </FormGroup>
@@ -72,3 +75,7 @@ export default class LoginForm extends React.Component {
     );
   }
 }
+
+LoginForm.propTypes = {
+  login: PropTypes.func.isRequired
+};

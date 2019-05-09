@@ -1,14 +1,7 @@
 import React from 'react';
-import Button from 'react-bootstrap/lib/Button';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import Form from 'react-bootstrap/lib/Form';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
-import Panel from 'react-bootstrap/lib/Panel';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
 
-import Cookies from 'js-cookie';
 import GraphCompare from './GraphCompare.jsx';
 import Menu from './Menu.jsx';
 import LoginForm from './LoginForm.jsx';
@@ -23,9 +16,6 @@ const PanelForm = styled.div`
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showModal: false
-    };
     this.updateCookie = this.updateCookie.bind(this);
   }
 

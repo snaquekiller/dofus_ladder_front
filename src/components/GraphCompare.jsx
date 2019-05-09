@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import Button from 'react-bootstrap/lib/Button';
 import Form from 'react-bootstrap/lib/Form';
 import FormControl from 'react-bootstrap/lib/FormControl';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Panel from 'react-bootstrap/lib/Panel';
-import RandomColor from 'randomcolor';
 import {
   LineChart,
   Line,
@@ -102,16 +100,15 @@ export default class GraphCompare extends React.Component {
 
   render() {
     const keys = [];
-    if (this.state.data) {
-      this.state.data.map(data =>
-        Object.keys(data)
-          .map(key => key)
-          .forEach(keyName => {
-            if (!keys.includes(keyName) && keyName !== 'name') {
-              keys.push(keyName);
-            }
-          })
-      );
+    const { data, name, loading, hide, colors } = this.state;
+    if (data) {
+      data.map(data => Object.keys(data)
+        .map(key => key)
+        .forEach(keyName => {
+          if (!keys.includes(keyName) && keyName !== 'name') {
+            keys.push(keyName);
+          }
+        }));
       console.log('keys', keys);
     }
     return (
@@ -124,11 +121,11 @@ export default class GraphCompare extends React.Component {
                 width="500px"
                 placeholder="Pseudo"
                 onChange={this.changeName}
-                value={this.state.name}
+                value={name}
               />
               <Button
                 bsStyle="primary"
-                disabled={this.state.loading}
+                disabled={loading}
                 onClick={this.scrap}
               >
                 Graph Me !!
@@ -136,17 +133,17 @@ export default class GraphCompare extends React.Component {
             </Form>
           </PanelForm>
         </Panel>
-        {this.state.loading && (
+        {loading && (
           <Panel>
             <Loader type="Circles" color="#00BFFF" height="100" width="100" />
           </Panel>
         )}
-        {!this.state.loading && this.state.data && (
+        {!loading && data && (
           <Panel>
             <LineChart
               width={1500}
               height={700}
-              data={this.state.data}
+              data={data}
               margin={{
                 top: 100,
                 right: 30,
@@ -162,14 +159,14 @@ export default class GraphCompare extends React.Component {
               />
               <Legend onClick={data => console.log('data', data)} />
               {keys.map((key, i) => {
-                if (!this.state.hide.includes(key)) {
+                if (!hide.includes(key)) {
                   return (
                     <Line
                       key={key}
                       type="linear"
                       dot={false}
                       dataKey={key}
-                      stroke={this.state.colors[i]}
+                      stroke={colors[i]}
                       activeDot={{ r: 5 }}
                     />
                   );

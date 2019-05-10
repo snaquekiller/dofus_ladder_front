@@ -57,6 +57,10 @@ class ConfigUri {
       });
   }
 
+  static hasToken() {
+    return Boolean(Cookies.remove('token'));
+  }
+
   static post(url, data) {
     return axios.post(url, data, this.getHeaders());
   }

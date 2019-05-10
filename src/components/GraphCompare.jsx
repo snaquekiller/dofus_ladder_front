@@ -100,7 +100,9 @@ export default class GraphCompare extends React.Component {
 
   render() {
     const keys = [];
-    const { data, name, loading, hide, colors } = this.state;
+    const {
+      data, name, loading, hide, colors
+    } = this.state;
     if (data) {
       data.map(data => Object.keys(data)
         .map(key => key)

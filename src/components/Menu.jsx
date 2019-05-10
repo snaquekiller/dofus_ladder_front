@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { slide as Menu } from 'react-burger-menu';
 
+import { ConfigUriUtil } from '../config/index.jsx';
+
 const StyledMenu = styled.div`
   /* Position and sizing of burger button */
   .bm-burger-button {
@@ -70,17 +72,29 @@ Note: Beware of modifying this element as it can break the animations - you shou
     background: rgba(0, 0, 0, 0.3);
   }
 `;
-const PanelForm = styled.div`
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-`;
 export default class MenuDofus extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  coucou() {
+    return '';
+  }
+
   render() {
+    let loginLogout = (
+      <a id="login" className="menu-item" href="/login">
+        Login
+      </a>
+    );
+
+    if (ConfigUriUtil.hasToken()) {
+      loginLogout = (
+        <a id="logout" className="menu-item" href="/logout">
+          Logout
+        </a>
+      );
+    }
     return (
       <StyledMenu>
         <Menu>
@@ -93,6 +107,8 @@ export default class MenuDofus extends React.Component {
           <a id="contact" className="menu-item" href="/contact">
             Contact
           </a>
+          {loginLogout}
+
         </Menu>
       </StyledMenu>
     );

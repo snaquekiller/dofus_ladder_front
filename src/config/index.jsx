@@ -15,6 +15,8 @@ export const configs = {
 };
 export const env = window.pageEnv || 'dev';
 
+export const langage = 'fr';
+
 class ConfigUri {
   static getHeaders() {
     const bearer = `Bearer ${Cookies.get('token')}`;
@@ -58,7 +60,7 @@ class ConfigUri {
   }
 
   static hasToken() {
-    return Boolean(Cookies.remove('token'));
+    return Boolean(Cookies.get('token'));
   }
 
   static post(url, data) {
@@ -67,6 +69,10 @@ class ConfigUri {
 
   static login(url, data) {
     return axios.post(url, qs.stringify(data), this.getHeadersLogin());
+  }
+
+  static logout() {
+    return Cookies.remove('token');
   }
 }
 export const ConfigUriUtil = ConfigUri;

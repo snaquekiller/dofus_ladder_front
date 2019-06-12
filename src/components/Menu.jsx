@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { slide as Menu } from 'react-burger-menu';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 import { ConfigUriUtil } from '../config/index.jsx';
+import { translate, text } from '../config/text.js';
 
 const StyledMenu = styled.div`
   /* Position and sizing of burger button */
@@ -83,32 +85,30 @@ export default class MenuDofus extends React.Component {
 
   render() {
     let loginLogout = (
-      <a id="login" className="menu-item" href="/login">
-        Login
-      </a>
+      <Link id="login" className="menu-item" to="/login">
+        {translate(text.menu.login)}
+      </Link>
     );
 
     if (ConfigUriUtil.hasToken()) {
       loginLogout = (
-        <a id="logout" className="menu-item" href="/logout">
-          Logout
-        </a>
+        <Link id="logout" className="menu-item" to="/logout">
+          {translate(text.menu.logout)}
+        </Link>
       );
     }
     return (
       <StyledMenu>
         <Menu>
-          <a id="home" className="menu-item" href="/">
-            Comparaison
-          </a>
-          <a id="about" className="menu-item" href="/about">
-            Top
-          </a>
-          <a id="contact" className="menu-item" href="/contact">
-            Contact
-          </a>
-          {loginLogout}
-
+          <Router>
+            <Link id="home" className="menu-item" to="/">
+              Comparaison
+            </Link>
+            <Link id="contact" className="menu-item" to="/contact">
+              Contact
+            </Link>
+            {loginLogout}
+          </Router>
         </Menu>
       </StyledMenu>
     );

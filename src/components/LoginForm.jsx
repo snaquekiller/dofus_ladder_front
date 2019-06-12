@@ -9,6 +9,7 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Panel from 'react-bootstrap/lib/Panel';
 
 import LoginService from '../service/LoginService.jsx';
+import { translate, text } from '../config/text.js';
 
 const PanelForm = styled.div`
   width: 400px;
@@ -54,20 +55,20 @@ export default class LoginForm extends React.Component {
               <ControlLabel>Login</ControlLabel>
               <FormControl
                 type="email"
-                placeholder="Email"
+                placeholder={translate(text.login.email)}
                 onChange={this.handleLogin}
                 value={email}
               />
               <FormControl
                 type="password"
-                placeholder="Password"
+                placeholder={translate(text.login.password)}
                 onChange={this.handlePassword}
                 value={password}
               />
               <FormControl.Feedback />
             </FormGroup>
             <Button onClick={() => this.login()} type="button">
-              Login
+              {translate(text.menu.login)}
             </Button>
           </Form>
         </Panel>

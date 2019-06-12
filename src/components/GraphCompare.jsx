@@ -173,6 +173,7 @@ export default class GraphCompare extends React.Component {
                     />
                   );
                 }
+                return null;
               })}
             </LineChart>
           </Panel>

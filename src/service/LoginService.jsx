@@ -21,5 +21,9 @@ export default {
     });
 
     return loginPromise;
+  },
+
+  logout() {
+    ConfigUriUtil.logout();
   }
 };

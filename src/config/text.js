@@ -1,3 +1,5 @@
+
+import { langage } from './index.jsx';
 /* eslint-disable linebreak-style */
 /**
  *  Pour avoir des texts avec des arguments vous pouvez faire:
@@ -15,9 +17,38 @@ const text = {
     fr: 'Annuler',
     eng: ''
   },
+  welcome:
+  {
+    fr: 'Bienvenue sur Dofus Ladder',
+    eng: 'Welcome to Dofus Ladder'
+  },
+  redirect: {
+    fr: 'Vous allez etre rediriger dans quelque seconde.',
+    eng: 'You will be redirected in X sec.'
+  },
   valider: {
     fr: 'Valider',
     eng: ''
+  },
+  menu: {
+    login: {
+      fr: 'Connexion',
+      eng: 'Login'
+    },
+    logout: {
+      fr: 'Logout',
+      eng: 'Logout'
+    }
+  },
+  login: {
+    email: {
+      fr: 'Email',
+      eng: 'Email'
+    },
+    password: {
+      fr: 'Mot de passe',
+      eng: 'Password'
+    }
   }
 };
 
@@ -37,7 +68,7 @@ Function for translate some text
 */
 function translate(_text, ...arg) {
   if (_text && _text.fr) {
-    return format(_text.fr, arg);
+    return format(_text[langage], arg);
   }
   return '';
 }

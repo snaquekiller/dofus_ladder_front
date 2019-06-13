@@ -14,8 +14,8 @@ const PanelForm = styled.div`
   margin-right: auto;
 `;
 class Logout extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(_props) {
+    super(_props);
     this.state = {
       timer: 10
     };

@@ -17,8 +17,8 @@ const PanelForm = styled.div`
 `;
 @observer
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(_props) {
+    super(_props);
     this.updateCookie = this.updateCookie.bind(this);
   }
 

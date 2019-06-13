@@ -41,13 +41,13 @@ class ConfigUri {
     };
   }
 
-  static getEndpoint(endPoint) {
-    return configs[env].domain + endPoint;
+  static getEndpoint(_endPoint) {
+    return configs[env].domain + _endPoint;
   }
 
-  static get(url) {
+  static get(_url) {
     return axios
-      .get(url, this.getHeaders())
+      .get(_url, this.getHeaders())
       .then(response => response)
       .catch(error => {
         if (error.response.status === 401) {
@@ -63,12 +63,12 @@ class ConfigUri {
     return Boolean(Cookies.get('token'));
   }
 
-  static post(url, data) {
-    return axios.post(url, data, this.getHeaders());
+  static post(_url, _data) {
+    return axios.post(_url, _data, this.getHeaders());
   }
 
-  static login(url, data) {
-    return axios.post(url, qs.stringify(data), this.getHeadersLogin());
+  static login(_url, _data) {
+    return axios.post(_url, qs.stringify(_data), this.getHeadersLogin());
   }
 
   static logout() {

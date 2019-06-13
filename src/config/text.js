@@ -49,14 +49,20 @@ const text = {
       fr: 'Mot de passe',
       eng: 'Password'
     }
+  },
+  error: {
+    badCredential: {
+      fr: 'Mot de passe ou email invalide.',
+      eng: 'Wrong password or email.'
+    }
   }
 };
 
-function format(string, arg) {
-  let a = string;
+function format(_string, _arg) {
+  let a = _string;
 
-  if (arg && Array.isArray(arg)) {
-    arg.forEach((element, i) => {
+  if (_arg && Array.isArray(_arg)) {
+    _arg.forEach((element, i) => {
       a = a.replace(new RegExp(`\\{${i}\\}`, 'g'), element);
     });
   }

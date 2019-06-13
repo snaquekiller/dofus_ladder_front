@@ -75,8 +75,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
   }
 `;
 export default class MenuDofus extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(_props) {
+    super(_props);
   }
 
   coucou() {

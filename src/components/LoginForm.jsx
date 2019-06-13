@@ -21,19 +21,20 @@ export default class LoginForm extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: null
     };
     this.login = this.login.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
   }
 
-  handleLogin(e) {
-    this.setState({ email: e.target.value });
+  handleLogin(_e) {
+    this.setState({ email: _e.target.value });
   }
 
-  handlePassword(e) {
-    this.setState({ password: e.target.value });
+  handlePassword(_e) {
+    this.setState({ password: _e.target.value });
   }
 
   login() {
@@ -41,16 +42,20 @@ export default class LoginForm extends React.Component {
     const { login } = this.props;
     LoginService.login(email, password).then(() => {
       login();
+      // we don't need a refresh so we assign it like that
+      this.state.error = null;
+    }).catch(() => {
+      this.setState({ error: translate(text.error.badCredential) });
     });
   }
 
   render() {
-    const { email, password } = this.state;
-
+    const { email, password, error } = this.state;
+    
     return (
       <PanelForm>
         <Panel>
-          <Form>
+          <Form validated>
             <FormGroup controlId="formBasicEmail">
               <ControlLabel>Login</ControlLabel>
               <FormControl
@@ -58,7 +63,11 @@ export default class LoginForm extends React.Component {
                 placeholder={translate(text.login.email)}
                 onChange={this.handleLogin}
                 value={email}
+                isValid="valid"
               />
+              <FormControl.Feedback />
+            </FormGroup>
+            <FormGroup controlId="formPassword">
               <FormControl
                 type="password"
                 placeholder={translate(text.login.password)}
@@ -67,6 +76,7 @@ export default class LoginForm extends React.Component {
               />
               <FormControl.Feedback />
             </FormGroup>
+            {error || null}
             <Button onClick={() => this.login()} type="button">
               {translate(text.menu.login)}
             </Button>

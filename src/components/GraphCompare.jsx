@@ -23,8 +23,8 @@ const PanelForm = styled.div`
   margin-right: auto;
 `;
 export default class GraphCompare extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(_props) {
+    super(_props);
     this.state = {
       hide: ['name'],
       name: '',

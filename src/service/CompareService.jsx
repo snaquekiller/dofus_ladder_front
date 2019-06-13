@@ -5,7 +5,7 @@ const endpoints = {
 };
 
 export default {
-  compare(name) {
-    return ConfigUriUtil.get(`${endpoints.compare}?name=${name}`);
+  compare(_name) {
+    return ConfigUriUtil.get(`${endpoints.compare}?name=${_name}`);
   }
 };

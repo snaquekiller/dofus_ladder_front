@@ -2,8 +2,14 @@
 dev: ## springboot run
 	yarn start
 
-fix:
+install: ## for install depency
+	yarn install	
+
+fix: ## for fix lint automatically if you need
 	node_modules/.bin/eslint --ext .jsx --ext .js --fix src	
+
+lint:
+	yarn lint
 
 update:
 	scp docker-compose-release.yml perso:/tmp

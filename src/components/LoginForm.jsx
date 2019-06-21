@@ -17,27 +17,27 @@ const PanelForm = styled.div`
   margin-right: auto;
 `;
 export default class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(_props) {
+    super(_props);
     this.state = {
       email: '',
       password: '',
       error: null
     };
-    this.login = this.login.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
+    this._login = this._login.bind(this);
+    this._handleLogin = this._handleLogin.bind(this);
+    this._handlePassword = this._handlePassword.bind(this);
   }
 
-  handleLogin(_e) {
+  _handleLogin(_e) {
     this.setState({ email: _e.target.value });
   }
 
-  handlePassword(_e) {
+  _handlePassword(_e) {
     this.setState({ password: _e.target.value });
   }
 
-  login() {
+  _login() {
     const { email, password } = this.state;
     const { login } = this.props;
     LoginService.login(email, password).then(() => {
@@ -51,7 +51,7 @@ export default class LoginForm extends React.Component {
 
   render() {
     const { email, password, error } = this.state;
-    
+
     return (
       <PanelForm>
         <Panel>
@@ -77,7 +77,7 @@ export default class LoginForm extends React.Component {
               <FormControl.Feedback />
             </FormGroup>
             {error || null}
-            <Button onClick={() => this.login()} type="button">
+            <Button onClick={() => this._login()} type="button">
               {translate(text.menu.login)}
             </Button>
           </Form>

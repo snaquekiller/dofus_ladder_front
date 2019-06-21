@@ -2,6 +2,7 @@
 - [Node](https://nodejs.org/en/download/)
 - [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 - [Make](https://www.gnu.org/software/make/)
+- [Eslint](https://eslint.org/)
 
 # How to Start
 If you don't install Make :
@@ -16,7 +17,6 @@ $ make install
 $ make dev
 ```
 
-
 # Some Command
 - To fix lint 
 ```bash
@@ -30,6 +30,16 @@ $ make lint
 - [MobX](https://mobx.js.org/getting-started.html)
 - [Styled-Component](https://www.styled-components.com/docs)
 - [Axios](https://github.com/axios/axios)
+- [Toaster](https://fkhadra.github.io/react-toastify/)
+
+
+# Some plugin for Vscode
+- eslint
+- git history diff
+- [Import cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)
+- jsint
+- Prettier
+
 
 # Regles 
 - Nom de fichier avec des majuscule pour tout composant.

@@ -12,7 +12,7 @@ import { langage } from './index.jsx';
     import {text, translate} from "../config/text";
     translate(text.example, "example", "utilise")
  */
-const text = {
+export const text = {
   annuler: {
     fr: 'Annuler',
     eng: ''
@@ -72,11 +72,9 @@ function format(_string, _arg) {
 /*
 Function for translate some text
 */
-function translate(_text, ...arg) {
+export function translate(_text, ...arg) {
   if (_text && _text.fr) {
     return format(_text[langage], arg);
   }
   return '';
 }
-exports.translate = translate;
-exports.text = text;

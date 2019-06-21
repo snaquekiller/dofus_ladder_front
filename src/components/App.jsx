@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import GraphCompare from './GraphCompare.jsx';
 import { translate, text } from '../config/text.js';
 import Menu from './Menu.jsx';
 import LoginForm from './LoginForm.jsx';
 import Logout from './Logout.jsx';
-import LoginStore from '../store/LoginStore.js';
+import Contact from './Contact.jsx';
+import PrivateRoute from './route/PrivateRoute.jsx';
 
 const PanelForm = styled.div`
   width: 90%;
@@ -17,14 +18,6 @@ const PanelForm = styled.div`
 `;
 @observer
 class App extends React.Component {
-  constructor(_props) {
-    super(_props);
-    this.updateCookie = this.updateCookie.bind(this);
-  }
-
-  updateCookie() {
-    LoginStore.refreshToken();
-  }
 
   render() {
     return (
@@ -32,15 +25,12 @@ class App extends React.Component {
         <Menu />
         <PanelForm>
           <h1>{translate(text.welcome)}</h1>
-          {!LoginStore.token ? (
-            <LoginForm login={this.updateCookie} />
-          ) : (
-            <Router>
-              <Route path="/login" component={LoginForm} />
-              <Route path="/logout" component={Logout} />
-              <Route path="/GraphCompare" component={GraphCompare} />
-            </Router>
-          )}
+          <Router>
+            <Route path="/login" component={LoginForm} />
+            <PrivateRoute path="/logout" component={Logout} />
+            <PrivateRoute path="/GraphCompare" component={GraphCompare} />
+            <PrivateRoute path="/contact" component={Contact} />
+          </Router>
         </PanelForm>
       </div>
     );

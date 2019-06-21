@@ -3,7 +3,9 @@ module.exports = {
   parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
-      legacyDecorators: true
+      legacyDecorators: true,
+      arrowFunctions: true,
+      "blockBindings": true
     }
   },
   env: {
@@ -47,6 +49,7 @@ module.exports = {
     'react/no-did-mount-set-state': 'off',
     'react/forbid-prop-types': 'off',
     'react/no-unused-prop-types': 'off',
-    'no-plusplus': 'off'
+    'no-plusplus': 'off',
+    'no-underscore-dangle': 'off'
   }
 };

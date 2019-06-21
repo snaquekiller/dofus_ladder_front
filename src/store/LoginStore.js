@@ -7,6 +7,7 @@ const LoginStore = {
   @action
   refreshToken() {
     LoginStore.token = Cookies.get('token');
+    return LoginStore.token;
   }
 };
 

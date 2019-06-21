@@ -8,7 +8,7 @@
 // If not: they are redirected to the login page.
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import LoginStore from '../store/LoginStore.js';
+import LoginStore from '../../store/LoginStore.js';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

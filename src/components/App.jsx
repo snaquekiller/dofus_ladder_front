@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import GraphCompare from './GraphCompare.jsx';
 import { translate, text } from '../config/text.js';
@@ -10,6 +12,7 @@ import LoginForm from './LoginForm.jsx';
 import Logout from './Logout.jsx';
 import Contact from './Contact.jsx';
 import PrivateRoute from './route/PrivateRoute.jsx';
+
 
 const PanelForm = styled.div`
   width: 90%;
@@ -23,6 +26,17 @@ class App extends React.Component {
     return (
       <div style={{ textAlign: 'center' }}>
         <Menu />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+        />
         <PanelForm>
           <h1>{translate(text.welcome)}</h1>
           <Router>

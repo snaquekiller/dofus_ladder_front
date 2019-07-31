@@ -23,7 +23,8 @@ $ make dev
 $ make lint
 ```
 
-# Depency and documentation
+# Dependency and documentation
+## Dependency
 - [Cookie](https://github.com/js-cookie/js-cookie)
 - [Router v5](https://reacttraining.com/blog/react-router-v5/)
 - [React Bootstrap](https://react-bootstrap.netlify.com/)
@@ -31,7 +32,11 @@ $ make lint
 - [Styled-Component](https://www.styled-components.com/docs)
 - [Axios](https://github.com/axios/axios)
 - [Toaster](https://fkhadra.github.io/react-toastify/)
+-
 
+## Doc
+- [Strict Mod](https://reactjs.org/docs/strict-mode.html)
+- [Audit Security](https://docs.npmjs.com/auditing-package-dependencies-for-security-vulnerabilities)
 
 # Some plugin for Vscode
 - eslint

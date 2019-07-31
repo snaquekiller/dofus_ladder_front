@@ -10,6 +10,7 @@ import Panel from 'react-bootstrap/lib/Panel';
 
 import LoginService from '../service/LoginService.jsx';
 import { translate, text } from '../config/text.js';
+import NumberFormatCustom from './NumberFormatCustom.jsx';
 
 const PanelForm = styled.div`
   width: 400px;
@@ -76,6 +77,7 @@ export default class LoginForm extends React.Component {
               />
               <FormControl.Feedback />
             </FormGroup>
+            <NumberFormatCustom value="3333" />
             {error || null}
             <Button onClick={() => this._login()} type="button">
               {translate(text.menu.login)}

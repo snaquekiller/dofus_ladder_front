@@ -8,9 +8,12 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Panel from 'react-bootstrap/lib/Panel';
 
+import {
+  Icon
+} from '@material-ui/core';
 import LoginService from '../service/LoginService.jsx';
 import { translate, text } from '../config/text.js';
-import NumberFormatCustom from './NumberFormatCustom.jsx';
+
 
 const PanelForm = styled.div`
   width: 400px;
@@ -23,11 +26,13 @@ export default class LoginForm extends React.Component {
     this.state = {
       email: '',
       password: '',
-      error: null
+      error: null,
+      isChecked: false
     };
     this._login = this._login.bind(this);
     this._handleLogin = this._handleLogin.bind(this);
     this._handlePassword = this._handlePassword.bind(this);
+    this.checkBox = this.checkBox.bind(this);
   }
 
   _handleLogin(_e) {
@@ -50,9 +55,17 @@ export default class LoginForm extends React.Component {
     });
   }
 
-  render() {
-    const { email, password, error } = this.state;
+  checkBox() {
+    console.log('ddd');
+    this.setState({ isChecked: !this.state.isChecked });
+  }
 
+  render() {
+    const {
+ email, password, error, isChecked 
+} = this.state;
+    const couleur = '#4CAF50';
+    console.log('cou', isChecked);
     return (
       <PanelForm>
         <Panel>
@@ -77,12 +90,32 @@ export default class LoginForm extends React.Component {
               />
               <FormControl.Feedback />
             </FormGroup>
-            <NumberFormatCustom value="3333" />
             {error || null}
             <Button onClick={() => this._login()} type="button">
               {translate(text.menu.login)}
             </Button>
           </Form>
+          <div
+            onClick={this.checkBox}
+            style={{
+              '--color': couleur,
+              '--hover-bg-color': isChecked ? couleur : '#FFFFFF',
+              width: 15,
+              height: 15,
+              borderStyle: 'solid',
+              borderColor: 'var(--color)',
+              backgroundColor: 'var(--color)',
+              color: 'var(--color)',
+              '&:hover': {
+                backgroundColor: 'var(--hover-bg-color)'
+              }
+            }}
+          >
+            {
+            isChecked
+            && <Icon className="fa fa-check" style={{ color: '#000000' }} />
+          }
+          </div>
         </Panel>
       </PanelForm>
     );

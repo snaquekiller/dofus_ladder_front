@@ -5,7 +5,7 @@ module.exports = {
     ecmaFeatures: {
       legacyDecorators: true,
       arrowFunctions: true,
-      "blockBindings": true
+      blockBindings: true
     }
   },
   env: {
@@ -50,6 +50,7 @@ module.exports = {
     'react/forbid-prop-types': 'off',
     'react/no-unused-prop-types': 'off',
     'no-plusplus': 'off',
-    'no-underscore-dangle': 'off'
+    'no-underscore-dangle': 'off',
+    "react/destructuring-assignment": ["never"]
   }
 };

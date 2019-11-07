@@ -21,7 +21,6 @@ const PanelForm = styled.div`
 `;
 @observer
 class App extends React.Component {
-
   render() {
     return (
       <div style={{ textAlign: 'center' }}>

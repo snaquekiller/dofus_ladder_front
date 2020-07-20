@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Form from 'react-bootstrap/lib/Form';
-import Panel from 'react-bootstrap/lib/Panel';
+import { Form, Card } from 'react-bootstrap';
 import { Route, Redirect } from 'react-router';
 
 import LoginService from '../service/LoginService.jsx';
@@ -30,7 +29,7 @@ class Logout extends React.Component {
     LoginService.logout();
     return (
       <PanelForm>
-        <Panel>
+        <Card>
           <Form>
             {translate(text.redirect)}
             { this.state.timer === 0 ? (
@@ -44,7 +43,7 @@ class Logout extends React.Component {
             ) : null
             }
           </Form>
-        </Panel>
+        </Card>
       </PanelForm>
     );
   }

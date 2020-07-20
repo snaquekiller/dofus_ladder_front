@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from 'react-bootstrap/lib/Button';
-import Form from 'react-bootstrap/lib/Form';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import Panel from 'react-bootstrap/lib/Panel';
+import { Button, Form, FormControl, Card } from 'react-bootstrap';
 import {
   LineChart,
   Line,
@@ -115,7 +112,7 @@ export default class GraphCompare extends React.Component {
     }
     return (
       <div>
-        <Panel>
+        <Card>
           <PanelForm>
             <Form>
               <FormControl
@@ -134,7 +131,7 @@ export default class GraphCompare extends React.Component {
               </Button>
             </Form>
           </PanelForm>
-        </Panel>
+        </Card>
         {loading && (
           <Panel>
             <Loader type="Circles" color="#00BFFF" height="100" width="100" />

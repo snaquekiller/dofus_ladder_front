@@ -14,6 +14,7 @@ import LoginStore from '../../store/LoginStore.js';
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const isLoggedIn = LoginStore.refreshToken();
 
+  console.log("dcoucou", isLoggedIn)
   const render = props => (isLoggedIn ? (
     <Component {...props} />
   ) : (

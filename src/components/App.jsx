@@ -13,7 +13,6 @@ import Logout from './Logout.jsx';
 import Contact from './Contact.jsx';
 import PrivateRoute from './route/PrivateRoute.jsx';
 
-
 const PanelForm = styled.div`
   width: 90%;
   margin-left: auto;
@@ -24,28 +23,28 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{ textAlign: 'center' }}>
-        <Menu />
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnVisibilityChange
-          draggable
-          pauseOnHover
-        />
-        <PanelForm>
-          <h1>{translate(text.welcome)}</h1>
-          <Router>
-            <Route path="/login" component={LoginForm} />
-            <PrivateRoute path="/logout" component={Logout} />
-            <PrivateRoute path="/GraphCompare" component={GraphCompare} />
-            <PrivateRoute path="/contact" component={Contact} />
-          </Router>
-        </PanelForm>
+      <div style={{ textAlign: 'center' }} id="outer-container">
+        <Router>
+          <Menu />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable
+            pauseOnHover
+          />
+          <PanelForm>
+            <h1>{translate(text.welcome)}</h1>
+              <Route path="/login" component={LoginForm} />
+              <PrivateRoute path="/logout" component={Logout} />
+              <PrivateRoute path="/GraphCompare" component={GraphCompare} />
+              <PrivateRoute path="/contact" component={Contact} />
+          </PanelForm>
+        </Router>
       </div>
     );
   }

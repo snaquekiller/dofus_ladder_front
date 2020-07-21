@@ -138,7 +138,7 @@ export default class MenuDofus extends React.Component {
       );
     }
     const privateMenu = (
-      <Link id="home" className="bm-item" to="/" onClick={this._goToLink}>
+      <Link id="home" className="bm-item" to="/GraphCompare" onClick={this._goToLink}>
         <BarChart fontSize="large"/>
         <span className="bm-text">Comparaison</span>
       </Link>

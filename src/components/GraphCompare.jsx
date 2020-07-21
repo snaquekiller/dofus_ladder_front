@@ -60,12 +60,12 @@ export default class GraphCompare extends React.Component {
     this.dataFormater = this.dataFormater.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ url: e.target.value });
+  handleChange(_e) {
+    this.setState({ url: _e.target.value });
   }
 
-  changeName(e) {
-    this.setState({ name: e.target.value });
+  changeName(_e) {
+    this.setState({ name: _e.target.value });
   }
 
   scrap() {
@@ -73,26 +73,26 @@ export default class GraphCompare extends React.Component {
       this.setState({
         loading: true
       });
-      CompareService.compare(this.state.name).then(mangaGet => {
+      CompareService.compare(this.state.name).then(_mangaGet => {
         this.setState({
-          data: mangaGet.data,
+          data: _mangaGet.data,
           loading: false
         });
       });
     }
   }
 
-  dataFormater(number) {
-    if (number > 1000000000) {
-      return `${(number / 1000000000).toString()}B`;
+  dataFormater(_number) {
+    if (_number > 1000000000) {
+      return `${(_number / 1000000000).toString()}B`;
     }
-    if (number > 1000000) {
-      return `${(number / 1000000).toString()}M`;
+    if (_number > 1000000) {
+      return `${(_number / 1000000).toString()}M`;
     }
-    if (number > 1000) {
-      return `${(number / 1000).toString()}K`;
+    if (_number > 1000) {
+      return `${(_number / 1000).toString()}K`;
     }
-    return number.toString();
+    return _number.toString();
   }
 
   render() {
@@ -101,11 +101,11 @@ export default class GraphCompare extends React.Component {
       data, name, loading, hide, colors
     } = this.state;
     if (data) {
-      data.map(data => Object.keys(data)
-        .map(key => key)
-        .forEach(keyName => {
-          if (!keys.includes(keyName) && keyName !== 'name') {
-            keys.push(keyName);
+      data.map(_data => Object.keys(_data)
+        .map(_key => _key)
+        .forEach(_keyName => {
+          if (!keys.includes(_keyName) && _keyName !== 'name') {
+            keys.push(_keyName);
           }
         }));
       console.log('keys', keys);
@@ -133,12 +133,12 @@ export default class GraphCompare extends React.Component {
           </PanelForm>
         </Card>
         {loading && (
-          <Panel>
+          <Card>
             <Loader type="Circles" color="#00BFFF" height="100" width="100" />
-          </Panel>
+          </Card>
         )}
         {!loading && data && (
-          <Panel>
+          <Card>
             <LineChart
               width={1500}
               height={700}
@@ -156,7 +156,7 @@ export default class GraphCompare extends React.Component {
               <Tooltip
                 formatter={value => new Intl.NumberFormat('en').format(value)}
               />
-              <Legend onClick={data => console.log('data', data)} />
+              <Legend onClick={_data => console.log('data', _data)} />
               {keys.map((key, i) => {
                 if (!hide.includes(key)) {
                   return (
@@ -173,7 +173,7 @@ export default class GraphCompare extends React.Component {
                 return null;
               })}
             </LineChart>
-          </Panel>
+          </Card>
         )}
       </div>
     );

@@ -13,10 +13,14 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 module.exports = {
   entry: './src/index.js',
+  mode: 'development',
   output: {
     path: path.resolve('dist'),
     filename: 'index_bundle.js',
     publicPath: '/'
+  },
+npm  resolve: {
+      extensions: [".ts", ".tsx", ".js", ".jsx"]
   },
   module: {
     rules: [

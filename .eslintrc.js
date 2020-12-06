@@ -1,6 +1,15 @@
 module.exports = {
     extends: 'airbnb',
     parser: 'babel-eslint',
+    globals: {
+        "window": true,
+        "document": true,
+        "localStorage": true,
+        "FormData": true,
+        "FileReader": true,
+        "Blob": true,
+        "navigator": true
+    },
     parserOptions: {
         ecmaFeatures: {
             legacyDecorators: true,

@@ -19,7 +19,7 @@ module.exports = {
     filename: 'index_bundle.js',
     publicPath: '/'
   },
-npm  resolve: {
+  resolve: {
       extensions: [".ts", ".tsx", ".js", ".jsx"]
   },
   module: {
